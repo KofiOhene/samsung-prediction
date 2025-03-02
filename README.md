@@ -1,5 +1,3 @@
-### **README.md** - Samsung Revenue Prediction & Business Insights
-
 # **Samsung Revenue Prediction and Key Business Drivers Analysis**
 ### **Applying Machine Learning to Forecast Revenue and Identify Key Factors**
 
