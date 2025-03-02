@@ -1,25 +1,24 @@
 import pandas as pd
 
-
 def feature_engineering(df):
     """
-    Perform feature engineering on the cleaned dataset.
+    Perform feature engineering on the cleaned dataset:
+    - Encode categorical variables
+    - Save processed data
     """
-    print("\nPerforming Feature Engineering...")
 
-    # Example Feature 1: Create "Revenue per Unit"
-    df["Revenue per Unit"] = df["Revenue ($)"] / df["Units Sold"]
+    print("Performing Feature Engineering...")
 
-    # Example Feature 2: Create "5G Growth Rate"
-    df["5G Growth Rate"] = df["5G Subscribers (millions)"].pct_change().fillna(0)
+    # Categorical columns that need encoding
+    categorical_columns = ["Quarter", "Region", "5G Capability", "Product Model"]
 
-    # Example Feature 3: Convert "Quarter" to numerical
-    quarter_mapping = {"Q1": 1, "Q2": 2, "Q3": 3, "Q4": 4}
-    df["Quarter_Num"] = df["Quarter"].map(quarter_mapping)
+    # One-hot encoding categorical variables
+    df = pd.get_dummies(df, columns=categorical_columns, drop_first=True)
 
-    # Save processed dataset
+    # Save the feature-engineered dataset
     processed_file_path = "data/processed/featured_data.csv"
     df.to_csv(processed_file_path, index=False)
-    print(f"\nFeature Engineering Complete! Data saved at: {processed_file_path}")
+
+    print(f"✅ Feature Engineering Complete! Data saved at: {processed_file_path}")
 
     return df
