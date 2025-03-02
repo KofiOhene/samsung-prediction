@@ -1,11 +1,11 @@
+import pandas as pd
 from src.data_cleaning import load_and_clean_data
+from src.feature_engineering import feature_engineering
+from src.model_training import train_revenue_model
 
-# Define file path
-file_path = "data/raw/Expanded_Dataset.csv"
+# Define file path for processed dataset
+processed_data_path = "data/processed/featured_data.csv"
 
-# Load and clean data
-df_cleaned = load_and_clean_data(file_path)
-
-# Display summary of cleaned data
-print("\nFinal Cleaned Data Overview:")
-print(df_cleaned.describe(include='all'))
+# Train Revenue Prediction Model
+print("\nStarting Revenue Prediction Model Training...")
+model, features_test, target_test, target_pred = train_revenue_model(processed_data_path)
